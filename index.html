@@ -11,12 +11,14 @@
 		<div ng-controller="GameController as game">
 			<table>
 				<tr ng-repeat="row in game.board track by $index">
-					<td ng-repeat="cell in row track by $index">
+					<td ng-repeat="cell in row track by $index" ng-click="game.click($parent.$index, $index)">
 						<div class="cell cell-{{cell}}"></div>
 					</td>
 				</tr>
 			</table>
 			<button ng-click="game.step()">step</button>
+			<button ng-click="game.start()">start</button>
+			<button ng-click="game.stop()">stop</button>
 		</div>
 	</body>
 </html>
