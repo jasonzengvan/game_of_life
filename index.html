@@ -3,6 +3,7 @@
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 		<script type="text/javascript" src="game_of_life.js"></script>
+		<link rel="stylesheet" type="text/css" href="game_of_life.css">
 		<title>Jason Zeng's Game of Life</title>
 	</head>
 	<body>
@@ -11,8 +12,7 @@
 			<table>
 				<tr ng-repeat="row in game.board track by $index">
 					<td ng-repeat="cell in row track by $index">
-						<span ng-show="cell"> o </span>
-						<span ng-hide="cell"> _ </span>
+						<div class="cell cell-{{cell}}"></div>
 					</td>
 				</tr>
 			</table>

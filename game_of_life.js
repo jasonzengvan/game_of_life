@@ -2,14 +2,14 @@ angular
 .module('gameOfLife', [])
 .controller('GameController', function() {
 	var game = this;
-	var N = 25;
+	var N = 50;
 
 	// board is a N x N matrix
 	game.board = new Array(N);
 	for (var i = 0; i < N; i++) {
 		game.board[i] = new Array(N).fill(false);
 	}
-	for (var i = 8; i < 18; i++) game.board[13][i] = true;
+	for (var i = 20; i < 30; i++) game.board[24][i] = true;
 
 	// TODO: start auto stepping
 	game.start = function() {

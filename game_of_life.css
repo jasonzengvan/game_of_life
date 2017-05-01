@@ -1,0 +1,12 @@
+.cell {
+	min-width: 10px;
+	min-height: 10px;
+}
+
+.cell-true {
+	background-color: yellow;
+}
+
+.cell-false {
+	background-color: gray;
+}
