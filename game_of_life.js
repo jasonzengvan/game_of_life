@@ -76,6 +76,15 @@ angular
 			found_by: "Bill Gosper",
 			found_in: "1970",
 			url: "http://www.conwaylife.com/wiki/Queen_bee_shuttle"
+		},
+		{
+			name: "Lightweight Spaceship",
+			width: 5,
+			height: 4,
+			data: [[0, 1], [0, 4], [1, 0], [2, 0], [2, 4], [3, 0], [3, 1], [3, 2], [3, 3]],
+			found_by: "John Conway",
+			found_in: "1970",
+			url: "http://www.conwaylife.com/wiki/Lightweight_spaceship"
 		}
 	];
 	game.selected = game.collection[0];
