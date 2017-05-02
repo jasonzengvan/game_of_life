@@ -12,7 +12,7 @@ angular
 	// board is a WIDTH x HEIGHT matrix
 	game.board = getEmptyBoard(WIDTH, HEIGHT);
 
-	// collection of known game patterns
+	// collection of well-known game patterns
 	game.collection = [
 		{
 			name: "Empty",
@@ -121,7 +121,6 @@ angular
 
 	// reset the board to selected pattern
 	game.reset = function() {
-		game.clear();
 		game.select();
 	};
 
@@ -133,7 +132,7 @@ angular
 	};
 
 
-	// TODO: optimize the algorithm
+	// TODO: optimization
 	// step through a single life iteration
 	// Rule 1: If a cell is populated it survives iff it has 2 or 3 neighbors.
 	// Rule 2: If a cell is unpopulated it becomes populated iff it has 3 neighbors.
