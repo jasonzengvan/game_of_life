@@ -1,6 +1,11 @@
+table {
+	border-spacing: 0px;
+}
+
 .cell {
 	min-width: 10px;
 	min-height: 10px;
+	cursor: pointer;
 }
 
 .cell-true {

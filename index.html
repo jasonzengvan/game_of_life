@@ -16,9 +16,12 @@
 					</td>
 				</tr>
 			</table>
+			<select ng-options="pattern.name for pattern in game.collection" ng-model="game.selected" ng-change="game.select()">
+			</select>
 			<button ng-click="game.step()">step</button>
-			<button ng-click="game.start()">start</button>
-			<button ng-click="game.stop()">stop</button>
+			<button ng-hide="game.isRunning" ng-click="game.start()">start</button>
+			<button ng-show="game.isRunning" ng-click="game.stop()">stop</button>
+			<label>#generations: {{game.generations}}</label>
 		</div>
 	</body>
 </html>
