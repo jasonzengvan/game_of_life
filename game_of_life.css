@@ -1,5 +1,32 @@
+body {
+	font-family: 'Roboto Slab', serif;
+}
+
 table {
 	border-spacing: 0px;
+}
+
+td {
+	padding: 1px;
+}
+
+#container {
+	width: 600px;
+	margin: 0 auto;
+}
+
+#footer {
+	text-align: center;
+}
+
+.controller {
+	margin-top: 20px;
+	margin-right: 5px;
+	height: 30px;
+	min-width: 80px;
+	border-width: 0px;
+	border-radius: 0px;
+	background-color: #dddddd;
 }
 
 .cell {
@@ -9,9 +36,19 @@ table {
 }
 
 .cell-true {
-	background-color: yellow;
+	background-color: #77cc7b;
 }
 
 .cell-false {
-	background-color: gray;
+	background-color: #dddddd;
 }
+
+.right {
+	float: right;
+}
+
+#generations {
+	margin-top: 20px;
+	float: right;
+}
+

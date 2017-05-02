@@ -2,13 +2,34 @@
 <html ng-app="gameOfLife">
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 		<script type="text/javascript" src="game_of_life.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="game_of_life.css">
 		<title>Jason Zeng's Game of Life</title>
 	</head>
 	<body>
-		<h1>Game of Life</h1>
-		<div ng-controller="GameController as game">
+		<div ng-controller="GameController as game" id="container">
+			<h1>Game of Life</h1>
+			<p>
+				<br>
+				The Game of Life, or <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's The Game of Life</a>, is a cellular automaton devised by the British mathematician John Horton Conway in 1970. 
+				<br>
+				The "game" is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves, or, for advanced "players", by creating patterns with particular properties.
+				<br><br>
+			</p>
+			<h3>Rules</h3>
+			<p>
+				The universe of the Game of Life is an infinite two-dimensional orthogonal grid of square cells, each of which is in one of two possible states, alive or dead, or "populated" or "unpopulated". Every cell interacts with its eight neighbours, which are the cells that are horizontally, vertically, or diagonally adjacent. At each step in time, the following transitions occur:
+				<ul>
+					<li>Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.</li>
+					<li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+					<li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
+					<li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+				</ul>
+				<br>
+			</p>
+			<h3>Game</h3>
 			<table>
 				<tr ng-repeat="row in game.board track by $index">
 					<td ng-repeat="cell in row track by $index" ng-click="game.click($parent.$index, $index)">
@@ -16,12 +37,24 @@
 					</td>
 				</tr>
 			</table>
-			<select ng-options="pattern.name for pattern in game.collection" ng-model="game.selected" ng-change="game.select()">
-			</select>
-			<button ng-click="game.step()">step</button>
-			<button ng-hide="game.isRunning" ng-click="game.start()">start</button>
-			<button ng-show="game.isRunning" ng-click="game.stop()">stop</button>
-			<label>#generations: {{game.generations}}</label>
+			<select ng-options="pattern.name for pattern in game.collection" ng-model="game.selected" ng-change="game.select()" class="controller"></select>
+			<button ng-click="game.step()" class="controller">STEP</button>
+			<button ng-hide="game.isRunning" ng-click="game.start()" class="controller">START</button>
+			<button ng-show="game.isRunning" ng-click="game.stop()" class="controller">STOP</button>
+			<button ng-click="game.reset()" class="controller">RESET</button>
+			<label id="generations">#generations: {{game.generations}}</label>
+			<br><br><br>
+
+			<h3>Patterns</h3>
+			<ul>
+				<li ng-repeat="pattern in game.collection" ng-hide="{{pattern.name === 'Empty'}}"> 
+					<a href="{{pattern.url}}"> {{pattern.name}} </a> <i class="right"> {{pattern.found_by}}, {{pattern.found_in}} </i> 
+				</li>
+			</ul>
+			<br>
+			<hr>
+			<p id="footer"> Created by Jason Zeng </p>
+			<br>
 		</div>
 	</body>
 </html>
