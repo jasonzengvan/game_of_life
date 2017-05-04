@@ -2,8 +2,8 @@ angular
 .module('gameOfLife', [])
 .controller('GameController', function($interval) {
 
-	var WIDTH = 50;
-	var HEIGHT = 35;
+	var WIDTH = 70;
+	var HEIGHT = 50;
 	var INTERVAL = 150;
 
 	var game = this;
@@ -85,6 +85,16 @@ angular
 			found_by: "John Conway",
 			found_in: "1970",
 			url: "http://www.conwaylife.com/wiki/Lightweight_spaceship"
+		},
+		{
+			name: "Gosper Glider Gun",
+			width: 36,
+			height: 9,
+			data: [[0, 24], [1, 22], [1, 24], [2, 12], [2, 13], [2, 20] ,[2, 21], [2, 34], [2, 35], [3, 11], [3, 15], [3, 20], [3, 21], [3, 34], [3, 35], [4, 0], [4, 1], [4, 10], [4, 16], [4, 20], [4, 21], [5, 0], [5, 1], [5, 10], [5, 14], [5, 16], [5, 17], [5, 22], [5, 24], [6, 10], [6, 16], [6, 24], [7, 11], [7, 15], [8, 12], [8, 13]],
+			found_by: "Bill Gosper",
+			found_in: "1970",
+			url: "http://www.conwaylife.com/wiki/Gosper_glider_gun"
+
 		}
 	];
 	game.selected = game.collection[0];
@@ -149,17 +159,43 @@ angular
 
 		var next = getEmptyBoard(WIDTH, HEIGHT);
 
+		// constant boundary conditions
+		// for (var i = 0; i < HEIGHT; i++) {
+		// 	for (var j = 0; j < WIDTH; j++) {
+		// 		var nb = 0;
+		// 		if (i - 1 >= 0 && j - 1 >= 0 && game.board[i-1][j-1]) nb++;
+		// 		if (i - 1 >= 0 && game.board[i-1][j]) nb++;
+		// 		if (j - 1 >= 0 && game.board[i][j-1]) nb++;
+		// 		if (i + 1 < HEIGHT && j - 1 >= 0 && game.board[i+1][j-1]) nb++;
+		// 		if (i + 1 < HEIGHT && game.board[i+1][j]) nb++;
+		// 		if (i - 1 >= 0 && j + 1 < WIDTH && game.board[i-1][j+1]) nb++;
+		// 		if (j + 1 < WIDTH && game.board[i][j+1]) nb++;
+		// 		if (i + 1 < HEIGHT && j + 1 < WIDTH && game.board[i+1][j+1]) nb++;
+
+
+		// 		if ((nb == 2 && game.board[i][j])|| nb == 3) next[i][j] = true;
+		// 		else next[i][j] = false;
+		// 	}
+		// }
+
+		// periodical boundary conditions
 		for (var i = 0; i < HEIGHT; i++) {
 			for (var j = 0; j < WIDTH; j++) {
 				var nb = 0;
-				if (i - 1 >= 0 && j - 1 >= 0 && game.board[i-1][j-1]) nb++;
-				if (i - 1 >= 0 && game.board[i-1][j]) nb++;
-				if (j - 1 >= 0 && game.board[i][j-1]) nb++;
-				if (i + 1 < HEIGHT && j - 1 >= 0 && game.board[i+1][j-1]) nb++;
-				if (i + 1 < HEIGHT && game.board[i+1][j]) nb++;
-				if (i - 1 >= 0 && j + 1 < WIDTH && game.board[i-1][j+1]) nb++;
-				if (j + 1 < WIDTH && game.board[i][j+1]) nb++;
-				if (i + 1 < HEIGHT && j + 1 < WIDTH && game.board[i+1][j+1]) nb++;
+
+				var u = (i - 1 + HEIGHT) % HEIGHT;
+				var b = (i + 1 + HEIGHT) % HEIGHT; 
+				var l = (j - 1 + WIDTH) % WIDTH;
+				var r = (j + 1 + WIDTH) % WIDTH;
+
+				if (game.board[u][l]) nb++;
+				if (game.board[u][j]) nb++;
+				if (game.board[i][l]) nb++;
+				if (game.board[b][l]) nb++;
+				if (game.board[b][j]) nb++;
+				if (game.board[u][r]) nb++;
+				if (game.board[i][r]) nb++;
+				if (game.board[b][r]) nb++;
 
 
 				if ((nb == 2 && game.board[i][j])|| nb == 3) next[i][j] = true;
